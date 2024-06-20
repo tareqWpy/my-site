@@ -11,7 +11,11 @@ def home_view(request):
         "published_date"
     )[:3]
 
-    context = {"posts": posts}
+    most_viewed_posts = Post.objects.filter(
+        published_date__lte=timezone.now(), status=1
+    ).order_by("-counted_views")[:4]
+
+    context = {"posts": posts, "most_viewed_posts": most_viewed_posts}
     return render(request, "website/index.html", context)
 
 
