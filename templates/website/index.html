@@ -83,7 +83,7 @@
                                                             <li>
                                                                 {{post.published_date}}
                                                             </li>
-                                                            <li>{{post.counted_views}}</li>
+                                                            <li>Views: {{post.counted_views}}</li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -104,7 +104,7 @@
                                                 >
                                                     <a
                                                         class="axil-button button-rounded hover-flip-item-wrapper"
-                                                        href="post-details.html"
+                                                        href="{% url 'blog:post-single' pid=post.id %}"
                                                     >
                                                         <span
                                                             class="hover-flip-item"
