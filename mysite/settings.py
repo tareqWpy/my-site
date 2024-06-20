@@ -39,8 +39,12 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "captcha",  # ! pip install  django-simple-captcha
+    "taggit",  # ! pip install django-taggit
+    "django_summernote",  # ! pip install django-summernote
     # ?  manualy installed apps:
     "accounts",
+    "blog",
+    "website",
 ]
 
 MIDDLEWARE = [
