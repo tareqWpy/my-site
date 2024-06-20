@@ -38,9 +38,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.humanize",
     "captcha",  # ! pip install  django-simple-captcha
     "taggit",  # ! pip install django-taggit
     "django_summernote",  # ! pip install django-summernote
+    "sorl.thumbnail",  # ! pip install sorl-thumbnail
     # ?  manualy installed apps:
     "accounts",
     "blog",
