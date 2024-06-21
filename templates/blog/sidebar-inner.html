@@ -2,35 +2,11 @@
 <div class="sidebar-inner">
     <!-- Start Single Widget  -->
     <div class="axil-single-widget widget widget_postlist mb--30">
-        <h5 class="widget-title">Popular on Blogar</h5>
+        <h5 class="widget-title">Latest on Blogar</h5>
         <!-- Start Post List  -->
         <div class="post-medium-block">
             <!-- Start Single Post  -->
-            {% for post in most_viewed_posts %}
-            <div class="content-block post-medium mb--20">
-                {% thumbnail post.image "180x180" crop="center" as im %}
-                <div class="post-thumbnail">
-                    <a href="{% url 'blog:post-single' pid=post.id %}">
-                        <img src="{{im.url}}" alt="Post Images" />
-                    </a>
-                </div>
-                {% endthumbnail %}
-                <div class="post-content">
-                    <h6 class="title">
-                        <a href="post-details.html"
-                            >The underrated design book that transformed the way
-                            I work
-                        </a>
-                    </h6>
-                    <div class="post-meta">
-                        <ul class="post-meta-list">
-                            <li>Feb 17, 2019</li>
-                            <li>300k Views</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
+            {% latest_post %}
             <!-- End Single Post  -->
         </div>
         <!-- End Post List  -->
