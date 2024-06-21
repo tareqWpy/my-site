@@ -45,6 +45,16 @@ def post_search_view(request):
                 | Q(category__category_name__contains=search)
                 | Q(tags__name__contains=search)
             ).distinct()
+
+    posts = Paginator(list(posts), 4)
+
+    try:
+        page_number = request.GET.get("page")
+        posts = posts.get_page(page_number)
+    except PageNotAnInteger:
+        posts = posts.get_page(1)
+    except EmptyPage:
+        posts = posts.get_page(1)
     context = {"posts": posts}
     return render(request, "blog/post-list.html", context)
 
