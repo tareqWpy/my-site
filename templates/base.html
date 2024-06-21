@@ -116,7 +116,7 @@
                                         </li>
                                         <li class="menu-item-has-children">
                                             <a href="{% url 'blog:post-list' %}"
-                                                >Post</a
+                                                >Posts</a
                                             >
                                         </li>
                                         <li class="menu-item-has-children">
@@ -141,7 +141,9 @@
                                 class="header-search text-end d-flex align-items-center"
                             >
                                 <form
+                                    action="{% url 'blog:post-search' %}"
                                     class="header-search-form d-sm-block d-none"
+                                    method="GET"
                                 >
                                     <div class="axil-search form-group">
                                         <button
@@ -151,6 +153,7 @@
                                             <i class="fal fa-search"></i>
                                         </button>
                                         <input
+                                            name="s"
                                             type="text"
                                             class="form-control"
                                             placeholder="Search"

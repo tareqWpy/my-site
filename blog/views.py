@@ -18,7 +18,7 @@ def post_list_view(request, **kwargs):
     if kwargs.get("tag_name") is not None:
         posts = posts.filter(tags__name__in=[kwargs["tag_name"]])
 
-    posts = Paginator(list(posts), 3)
+    posts = Paginator(list(posts), 4)
 
     try:
         page_number = request.GET.get("page")
@@ -27,7 +27,15 @@ def post_list_view(request, **kwargs):
         posts = posts.get_page(1)
     except EmptyPage:
         posts = posts.get_page(1)
-    context = {"posts": posts}
+
+    most_viewed_posts = Post.objects.filter(
+        published_date__lte=timezone.now(), status=1
+    ).order_by("-counted_views")[:3]
+
+    context = {
+        "posts": posts,
+        "most_viewed_posts": most_viewed_posts,
+    }
     return render(request, "blog/post-list.html", context)
 
 

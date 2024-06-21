@@ -1,0 +1,13 @@
+{% load static %}
+<div class="axil-single-widget widget widget_tag_cloud mb--30">
+    <h5 class="widget-title">Categories</h5>
+    <!-- Start Post List  -->
+    <div class="tagcloud">
+        {% for name, count in categories.items|slice:":5" %}
+        <a href="{% url 'blog:post-category' cat_name=name %}"
+            >{{name}}: {{count}}</a
+        >
+        {% endfor %}
+    </div>
+    <!-- End Post List  -->
+</div>

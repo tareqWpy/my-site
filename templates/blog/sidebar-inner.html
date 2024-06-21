@@ -1,0 +1,82 @@
+{% load static %} {% load thumbnail %} {% load blog_tags %}
+<div class="sidebar-inner">
+    <!-- Start Single Widget  -->
+    <div class="axil-single-widget widget widget_postlist mb--30">
+        <h5 class="widget-title">Popular on Blogar</h5>
+        <!-- Start Post List  -->
+        <div class="post-medium-block">
+            <!-- Start Single Post  -->
+            {% for post in most_viewed_posts %}
+            <div class="content-block post-medium mb--20">
+                {% thumbnail post.image "180x180" crop="center" as im %}
+                <div class="post-thumbnail">
+                    <a href="{% url 'blog:post-single' pid=post.id %}">
+                        <img src="{{im.url}}" alt="Post Images" />
+                    </a>
+                </div>
+                {% endthumbnail %}
+                <div class="post-content">
+                    <h6 class="title">
+                        <a href="post-details.html"
+                            >The underrated design book that transformed the way
+                            I work
+                        </a>
+                    </h6>
+                    <div class="post-meta">
+                        <ul class="post-meta-list">
+                            <li>Feb 17, 2019</li>
+                            <li>300k Views</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- End Single Post  -->
+        </div>
+        <!-- End Post List  -->
+    </div>
+    <!-- End Single Widget  -->
+
+    <!-- Start Single Widget  -->
+    <div class="axil-single-widget widget widget_newsletter mb--30">
+        <!-- Start Post List  -->
+        <div class="newsletter-inner text-center">
+            <h4 class="title mb--15">Never Miss A Post!</h4>
+            <p class="b2 mb--30">
+                Sign up for free and be the first to <br />
+                get notified about updates.
+            </p>
+            <form action="#">
+                <div class="form-group">
+                    <input type="text" placeholder="Enter Your Email " />
+                </div>
+                <div class="form-submit">
+                    <button class="cerchio axil-button button-rounded">
+                        <span>Subscribe</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <!-- End Post List  -->
+    </div>
+    <!-- End Single Widget  -->
+
+    <!-- Start Single Widget  -->
+    <div class="axil-single-widget widget widget_ads mb--30">
+        <!-- Start Post List  -->
+        <div class="thumbnail">
+            <a href="#">
+                <img
+                    src="{% static 'images/post-single/ads-01.jpg' %}"
+                    alt="Ads Images"
+                />
+            </a>
+        </div>
+        <!-- End Post List  -->
+    </div>
+    <!-- End Single Widget  -->
+    {% post_category %}
+    <!-- Start Single Widget  -->
+
+    <!-- End Single Widget  -->
+</div>

@@ -6,7 +6,7 @@ from blog.models import Category, Post
 register = template.Library()
 
 
-@register.inclusion_tag("blog/blog-latest-posts.html")
+@register.inclusion_tag("blog/latest-posts.html")
 def latest_post():
     posts = Post.objects.filter(status=1, published_date__lte=timezone.now()).order_by(
         "-published_date"
@@ -14,7 +14,7 @@ def latest_post():
     return {"posts": posts}
 
 
-@register.inclusion_tag("blog/blog-post-categories.html")
+@register.inclusion_tag("blog/post-categories.html")
 def post_category():
     posts = Post.objects.filter(status=1, published_date__lte=timezone.now()).order_by(
         "-published_date"
