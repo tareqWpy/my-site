@@ -18,7 +18,7 @@ def post_list_view(request, **kwargs):
     if kwargs.get("tag_name") is not None:
         posts = posts.filter(tags__name__in=[kwargs["tag_name"]])
 
-    posts = Paginator(list(posts), 4)
+    posts = Paginator(list(posts), 3)
 
     try:
         page_number = request.GET.get("page")
