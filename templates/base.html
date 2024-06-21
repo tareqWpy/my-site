@@ -39,17 +39,70 @@
         <link rel="stylesheet" href="{% static 'css/plugins/plugins.css' %}" />
         <link rel="stylesheet" href="{% static 'css/style.css' %}" />
         <style>
-            .notifications{
+        .notifications{
                 top: 100px;
                 width: 100%;
                 z-index: 99999;
                 right:0px;
                 position: absolute;
             }
+        #modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(1, 1, 1, 0.2);
+            backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s; /* Smooth transition effect */
+            opacity: 1; /* Initially visible */
+             /* Enable interaction when visible */
+            user-select:none;
+        }
+
+        /* Style for the content inside the modal */
+        #modal-content {
+            padding: 20px;
+            background-color: #ebebebb3;
+            border-radius: 10px;
+        }
+        /* HTML:  */
+        .loader {
+            width: 65px;
+            height: 30px;
+            position: relative;
+        }
+        .loader:before {
+            content: "";
+            position: absolute;
+            border-radius: 50px;
+            box-shadow: 0 0 0 3px inset #333;
+            animation: l3 0.75s infinite alternate;
+        }
+        @keyframes l3 {
+            0% {
+                inset: 0 35px 0 0;
+            }
+            50% {
+                inset: 0 0 0 0;
+            }
+            100% {
+                inset: 0 0 0 35px;
+            }
+        }
         </style>
     </head>
         
     <body>
+        <div id="modal">
+        <div id="modal-content">
+            <div class="loader"></div>
+        </div>
+    </div>
         <div class="notifications">
             {% if messages %}
                 <ul id="popup-message" style="position: absolute; right: 20px;">
@@ -555,7 +608,20 @@
         <!-- JS
 ============================================ -->
         <script>
-            
+            // Wait for the DOM to load
+            document.addEventListener('DOMContentLoaded', function() {
+                var modal = document.getElementById('modal');
+
+                // Set a brief timeout to allow for a smooth transition
+                setTimeout(function() {
+                    modal.style.opacity = '0';
+                    modal.style.pointerEvents = 'none'; // Disable interaction after transition
+                }, 1000); // Adjust the timeout value to control transition duration
+
+                // Enable pointer events on the modal to prevent interactions with elements behind it
+                modal.style.pointerEvents = 'auto';
+            });
+
             document.addEventListener('DOMContentLoaded', function () {
                 const popupMessage = document.getElementById('popup-message');
                 setTimeout(function () {
