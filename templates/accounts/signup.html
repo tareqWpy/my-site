@@ -1,134 +1,119 @@
 {% extends "base.html" %} {% load static %} {% block content %}
-<section class="banner-area relative blog-home-banner" id="home">
-</section>
-<div class="limiter" id="scrollTarget">
-    <div class="container-login100">
-        <div class="wrap-login100 p-b-90">
-            <form
-                style='position:relative'
-                class="login100-form validate-form flex-sb flex-w"
-                method="POST"
-                action={% url 'accounts:signup' %}
-            >
-                {% csrf_token %}
-                <span class="login100-form-title p-b-51"> Sign up </span>
-                <div
-                    class="wrap-input100 validate-input m-b-16"
-                    data-validate="First name is required"
-                >
-                    <input
-                        class="input100"
-                        type="text"
-                        name="first_name"
-                        placeholder="First name"
-                    />
-                    <span class="focus-input100"></span>
-                </div>
-                <div
-                    class="wrap-input100 validate-input m-b-16"
-                    data-validate="Last name is required"
-                >
-                    <input
-                        class="input100"
-                        type="text"
-                        name="last_name"
-                        placeholder="Last name"
-                    />
-                    <span class="focus-input100"></span>
-                </div>
-                <div
-                    class="wrap-input100 validate-input m-b-16"
-                    data-validate="Username is required"
-                >
-                    <input
-                        class="input100"
-                        type="text"
-                        name="username"
-                        placeholder="Username"
-                    />
-                    <span class="focus-input100"></span>
-                </div>
-                <div
-                    class="wrap-input100 validate-input m-b-16"
-                    data-validate="Email is required"
-                >
-                    <input
-                        class="input100"
-                        type="email"
-                        name="email"
-                        placeholder="email"
-                    />
-                    <span class="focus-input100"></span>
-                </div>
-                <div
-                    class="wrap-input100 validate-input m-b-16"
-                    data-validate="Password is required"
-                >
-                    <input
-                        class="input100"
-                        type="password"
-                        name="password1"
-                        placeholder="Password"
-                    />
-                    <span class="focus-input100"></span>
-                </div>
-                <div
-                    class="wrap-input100 validate-input m-b-16"
-                    data-validate="Password is required"
-                >
-                    <input
-                        class="input100"
-                        type="password"
-                        name="password2"
-                        placeholder="Confirm Password"
-                    />
-                    <span class="focus-input100"></span>
-                </div>
-                <div class="flex-sb-m w-full p-t-3 p-b-24">
-                    <div class="contact100-form-checkbox">
-                        <input
-                            class="input-checkbox100"
-                            id="ckb1"
-                            type="checkbox"
-                            name="remember-me"
-                        />
+<div class="axil-post-list-area axil-section-gap bg-color-white">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-4">
+                <div class="axil-about-us">
+                    <!-- Start Contact Form  -->
+                    <div class="axil-section-gapTop axil-contact-form-area">
+                        <h3 id="scrollTarget">Sign Up</h3>
+                        <form
+                            action="{% url 'accounts:signup' %}"
+                            method="POST"
+                            class="axil-contact-form contact-form--1 row"
+                        >
+                            {% csrf_token %}
+                            <div class="col-lg-12 col-md-12 col-12">
+                                <div class="form-group">
+                                    <label for="contact-name">First Name</label>
+                                    <input
+                                        name="first_name"
+                                        type="text"
+                                        required=""
+                                    />
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12">
+                                <div class="form-group">
+                                    <label for="contact-name">Last Name</label>
+                                    <input
+                                        name="last_name"
+                                        type="text"
+                                        required=""
+                                    />
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12">
+                                <div class="form-group">
+                                    <label for="contact-name">Username</label>
+                                    <input
+                                        name="username"
+                                        type="text"
+                                        required=""
+                                    />
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12">
+                                <div class="form-group">
+                                    <label for="contact-email">Email</label>
+                                    <input
+                                        name="email"
+                                        type="email"
+                                        required=""
+                                        pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
+                                    />
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12">
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input
+                                        for="contact-email"
+                                        type="password"
+                                        name="password1"
+                                        required=""
+                                    />
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12">
+                                <div class="form-group">
+                                    <label>Confirm Password</label>
+                                    <input
+                                        for="contact-email"
+                                        type="password"
+                                        name="password2"
+                                        required=""
+                                    />
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-8">
+                                <div class="form-group d-flex">
+                                    {{form.captcha}}
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div
+                                    class="form-submit d-flex justify-content-between align-items-center"
+                                >
+                                    <button
+                                        name="submit"
+                                        type="submit"
+                                        class="axil-button button-rounded btn-primary"
+                                    >
+                                        Sign Up
+                                    </button>
+                                    <a href="{% url 'accounts:login' %}"
+                                        >already have an account?</a
+                                    >
+                                </div>
+                            </div>
+                        </form>
                     </div>
+                    <!-- End Contact Form  -->
                 </div>
-                <div class="container-login100-form-btn m-t-17">
-                    
-                    <div class="contact100-form-checkbox" style="display:flex; justify-content:space-between; height:33px; position:absolute; bottom: 95px; right: 70px; overflow:hidden">
-                        <div
-                            class="alert-msg" style="width:100% ;border:1px solid black; border-radius:2px; overflow:hidden"
-                            name="remember-me"
-                        >{{form.captcha}}</div>
-                    </div>
-                    <button type='submit' class="login100-form-btn">Sign Up</button>
-                    <div class="contact100-form-checkbox" >
-                        <a
-                            href="{% url 'accounts:login' %}"
-                        >already have an account?</a>
-                    </div>
-                </div>
-            </form>
-            <br/>
-        </div>      
+                <!-- End About Area  -->
+            </div>
+        </div>
     </div>
 </div>
-<div id="dropDownSelect1"></div>
+
 <script>
     window.onload = function () {
         // Select the element you want to scroll to
         const element = document.getElementById("scrollTarget");
 
-        // Determine the scroll position
-        const offset = 0.23 * window.innerHeight; // 20% of the viewport height
-
-        // Scroll to that position
-        window.scrollBy({
-            top: offset,
-            behavior: "smooth"
-        });
+        // Scroll to that element
+        element.scrollIntoView({ behavior: "smooth" });
     };
 </script>
-
 {% endblock %}
