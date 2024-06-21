@@ -82,8 +82,9 @@
                                                         <ul
                                                             class="post-meta-list"
                                                         >
+                                                            <!-- prettier-ignore -->
                                                             <li>
-                                                                {{post.published_date}}
+                                                                {{post.published_date|date:"d F Y"}}
                                                             </li>
                                                             <li>Views: {{post.counted_views}}</li>
                                                         </ul>

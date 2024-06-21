@@ -68,61 +68,67 @@
                                 the fields are required.
                             </p>
                             <form
-                                id="contact-form"
+                                action="{% url 'website:contact' %}"
                                 method="POST"
-                                action="mail.php"
                                 class="axil-contact-form contact-form--1 row"
                             >
+                                {% csrf_token %}
                                 <div class="col-lg-4 col-md-4 col-12">
                                     <div class="form-group">
                                         <label for="contact-name"
                                             >Your Name</label
                                         >
                                         <input
-                                            name="contact-name"
-                                            id="contact-name"
+                                            value="{{request.user.first_name}}"
+                                            name="name"
                                             type="text"
+                                            required=""
                                         />
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-12">
                                     <div class="form-group">
-                                        <label for="contact-phone">Phone</label>
-                                        <input
-                                            type="text"
-                                            name="contact-phone"
-                                            id="contact-phone"
-                                        />
+                                        <label for="contact-phone"
+                                            >Subject</label
+                                        >
+                                        <input name="subject" type="text" />
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-12">
                                     <div class="form-group">
                                         <label>Your Email</label>
                                         <input
+                                            value="{{request.user.email}}"
                                             for="contact-email"
-                                            name="contact-email"
-                                            id="contact-email"
                                             type="email"
+                                            name="email"
+                                            pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
+                                            required=""
                                         />
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <div class="form-group">
+                                    <div class="form-group textarea">
                                         <label for="contact-message"
                                             >Your Message</label
                                         >
                                         <textarea
+                                            name="message"
                                             name="contact-message"
-                                            id="contact-message"
+                                            required=""
                                         ></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12">
+                                    <div
+                                        class="form-group d-flex col-lg-4 col-md-8 col-sm-12"
+                                    >
+                                        {{form.captcha}}
+                                    </div>
                                     <div class="form-submit">
                                         <button
                                             name="submit"
                                             type="submit"
-                                            id="submit"
                                             class="axil-button button-rounded btn-primary"
                                         >
                                             Submit

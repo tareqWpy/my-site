@@ -69,7 +69,10 @@
                                             </a>
                                         </h6>
                                         <ul class="post-meta-list">
-                                            <li>{{post.published_date}}</li>
+                                            <!-- prettier-ignore -->
+                                            <li>
+                                                {{post.published_date|date:"d F Y"}}
+                                            </li>
                                             <li class="ml-2">
                                                 Views: {{post.counted_views}}
                                             </li>
