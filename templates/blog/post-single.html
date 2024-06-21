@@ -102,13 +102,19 @@
                         <p class="has-medium-font-size">
                             {{current_post.content|safe}}
                         </p>
-
+                        <div class="tagcloud">
+                            {% for tag in current_post.tags.all  %}
+                            <a href="{% url 'blog:post-tags' tag_name=tag.name %}">{{tag.name}}</a>
+                            {% endfor %}
+                        </div>
                         <!-- Start Comment Form Area  -->
                         <div class="axil-comment-area">
                             <div class="axil-total-comment-post">
                                 <div class="title">
                                     <h4 class="mb--0">{{comments|length}} Comments</h4>
+                                    
                                 </div>
+                                
                                 <div class="add-comment-button cerchio">
                                     <a
                                         class="axil-button button-rounded"
@@ -118,7 +124,7 @@
                                     >
                                 </div>
                             </div>
-
+                            
                             <!-- Start Comment Respond  -->
                             <div class="comment-respond">
                                 <h4 class="title">Post a comment</h4>
