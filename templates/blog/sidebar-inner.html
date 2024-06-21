@@ -22,9 +22,14 @@
                 Sign up for free and be the first to <br />
                 get notified about updates.
             </p>
-            <form action="#">
+            <form action="{% url 'website:newsletter' %}" method="POST">
+                {% csrf_token %}
                 <div class="form-group">
-                    <input type="text" placeholder="Enter Your Email " />
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Enter Your Email "
+                    />
                 </div>
                 <div class="form-submit">
                     <button class="cerchio axil-button button-rounded">

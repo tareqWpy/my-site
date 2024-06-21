@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_extensions",
     "django.contrib.humanize",
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
     "captcha",  # ! pip install  django-simple-captcha
     "taggit",  # ! pip install django-taggit
     "django_summernote",  # ! pip install django-summernote
@@ -146,6 +149,7 @@ EMAIL_HOST_PASSWORD = "xywuynudbaxvqelh"
 
 PASSWORD_RESET_TIMEOUT = 3600
 
+SITE_ID = 2
 
 # ! this for python manage.py collecstatic
 STATIC_ROOT = BASE_DIR / "statics"
@@ -156,3 +160,34 @@ STATICFILES_DIRS = [
 ]
 
 CSRF_COOKIE_SECURE = True
+
+# ? robots
+ROBOTS_USE_HOST = False
+ROBOTS_USE_SITEMAP = False
+
+# ? summernote configuration
+SUMMERNOTE_THEME = "bs5"
+SUMMERNOTE_CONFIG = {
+    # Using SummernoteWidget - iframe mode, default
+    "iframe": True,
+    # You can put custom Summernote settings
+    "summernote": {
+        # As an example, using Summernote Air-mode
+        "airMode": False,
+        # Change editor size
+        "width": "1000",
+        "height": "500",
+        # Toolbar customization
+        # https://summernote.org/deep-dive/#custom-toolbar-popover
+        "toolbar": [
+            ["style", ["style"]],
+            ["font", ["bold", "underline", "clear"]],
+            ["fontname", ["fontname"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["table", ["table"]],
+            ["insert", ["link", "picture", "video"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+        ],
+    },
+}

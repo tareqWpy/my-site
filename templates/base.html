@@ -38,24 +38,36 @@
         <link rel="stylesheet" href="{% static 'css/vendor/base.css' %}" />
         <link rel="stylesheet" href="{% static 'css/plugins/plugins.css' %}" />
         <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+        <style>
+            .notifications{
+                width: 100%;
+                z-index: 99999;
+                right:0px;
+                top:0px;
+                position: sticky;
+            }
+        </style>
     </head>
-        {% if messages %}
-                <ul id="popup-message" style="position: absolute; right: 20px;">
-                {% for message in messages %}
-                <li style="text-align:right" class="mt-3 alert{% if message.tags == 'error' %}
-                    alert-danger
-                    {% elif message.tags == 'success' %}
-                    alert-success
-                    {% elif message.tags == 'warning' %}
-                    alert-warning
-                    {% endif %}
-                    ">
-                    {{ message|safe }}
-                </li>
-                {% endfor %}
-                <ul>
-        {% endif %}
+        
     <body>
+        <div class="notifications">
+            {% if messages %}
+                <ul id="popup-message" style="position: absolute; right: 20px;">
+                    {% for message in messages %}
+                    <li style="text-align:right; list-style: none; color: #333333" class="mt-3 alert{% if message.tags == 'error' %}
+                        alert-danger
+                        {% elif message.tags == 'success' %}
+                        alert-success
+                        {% elif message.tags == 'warning' %}
+                        alert-warning
+                        {% endif %}
+                        ">
+                        {{ message|safe }}
+                    </li>
+                    {% endfor %}
+                    <ul>
+            {% endif %}
+        </div>
         <div class="main-wrapper">
             <div class="mouse-cursor cursor-outer"></div>
             <div class="mouse-cursor cursor-inner"></div>
@@ -644,6 +656,14 @@
 
         <!-- JS
 ============================================ -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const popupMessage = document.getElementById('popup-message');
+                setTimeout(function () {
+                    popupMessage.style.display = 'none';
+                }, 10000);
+            });
+        </script>
         <!-- Modernizer JS -->
         <script src="{% static 'js/vendor/modernizr.min.js' %}"></script>
         <!-- jQuery JS -->
