@@ -22,6 +22,7 @@ from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path, re_path
 
+from accounts.views import maintenance
 from blog.sitemaps import BlogSitemap
 from website.sitemaps import StaticViewSitemap
 
@@ -43,6 +44,7 @@ urlpatterns = [
     path("robots.txt", include("robots.urls")),
     path("summernote/", include("django_summernote.urls")),
     path("captcha/", include("captcha.urls")),
+    path("maintenance/", maintenance, name="maintenance"),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

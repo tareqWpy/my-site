@@ -168,5 +168,5 @@ class CustomPasswordResetView(PasswordResetView):
 
 
 # # ! for the MAINTANANCE_MODE
-# def maintenance(request):
-#     return render(request, "maintenance.html")
+def maintenance(request):
+    return render(request, "maintenance.html")

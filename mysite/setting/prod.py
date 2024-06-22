@@ -8,6 +8,10 @@ with open(BASE_DIR / "mysite/etc/secret_key.txt") as f:
     SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
+import os
+
+# ! for the MAINTANANCE_MODE
+MAINTANANCE_MODE = int(os.environ.get("MAINTANANCE_MODE", 1))
 
 
 STATICFILES_FINDERS = (
