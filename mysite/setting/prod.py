@@ -1,5 +1,5 @@
 import os
-from email.policy import default
+import string
 
 from decouple import config
 
@@ -15,7 +15,8 @@ DEBUG = config("DEBUG", cast=bool, default=False)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-MAINTANANCE_MODE = int(os.environ.get("MAINTANANCE_MODE", 0))
+# MAINTANANCE_MODE = int(os.environ.get("MAINTANANCE_MODE", 0))
+
 
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
@@ -40,12 +41,11 @@ KEEP_COMMENTS_ON_MINIFYING = True
 COMPRESS_ENABLED = True
 
 
-ALLOWED_HOSTS = ["djangotech.online", "www.djangotech.online"]
-# ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [config("ALLOWED_HOSTS")]
 
 
 # ? site framework
-SITE_ID = 2
+SITE_ID = config("SITE_ID", cast=int)
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -60,6 +60,7 @@ DATABASES = {
         "PORT": config("DB_PORT"),
     }
 }
+
 
 # ! this for python manage.py collecstatic
 STATIC_ROOT = BASE_DIR / "staticfiles"
