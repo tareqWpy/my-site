@@ -39,13 +39,26 @@
         <link rel="stylesheet" href="{% static 'css/plugins/plugins.css' %}" />
         <link rel="stylesheet" href="{% static 'css/style.css' %}" />
         <style>
-        .notifications{
-                top: 100px;
-                width: 100%;
-                z-index: 99999;
-                right:0px;
-                position: absolute;
-            }
+        .notifications {
+            width: 100%;
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .notifications.show{
+            opacity: 1;
+        }
+
+        #navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 999; /* Adjust the z-index as needed */
+        }
         #modal {
             position: fixed;
             top: 0;
@@ -97,7 +110,7 @@
         </style>
     </head>
         
-    <body>
+    <body style="margin-top:80px">
         <div id="modal">
         <div id="modal-content">
             <div class="loader"></div>
@@ -146,7 +159,7 @@
             </div>
 
             <!-- Start Header -->
-            <header class="header axil-header header-light header-sticky">
+            <header class="header axil-header header-light header-sticky" id="navbar">
                 <div class="header-wrap">
                     <div class="row justify-content-between align-items-center">
                         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-3 col-12">
@@ -167,7 +180,7 @@
                         </div>
 
                         <div class="col-xl-6 d-none d-xl-block">
-                            <div class="mainmenu-wrapper">
+                            <div class="mainmenu-wrapper" >
                                 <nav class="mainmenu-nav">
                                     <!-- Start Mainmanu Nav -->
                                     <ul class="mainmenu">
@@ -248,7 +261,7 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="d-flex justify-content-around gap-4 rounded-4 m-4">
+                                <div class="d-flex justify-content-around gap-4 m-4">
                                     {% if request.user.is_authenticated %}
                                         <a style="font-weight:400; color: #ffffff; background-color:#3858f6; padding: 8px 16px; border-radius:8px">{{ user.username }}</a>
                                         <a href="{% url 'accounts:logout' %}" style="font-weight:400; color: #ffffff; background-color:#1a1a1a; padding: 8px 16px; border-radius:8px">logout</a>
@@ -608,6 +621,29 @@
         <!-- JS
 ============================================ -->
         <script>
+
+            document.addEventListener('DOMContentLoaded', function() {
+            var notifications = document.querySelector('.notifications');
+
+            if (notifications) {
+                notifications.classList.add('show');
+
+                setTimeout(function() {
+                notifications.classList.remove('show');
+                }, 8000); // تاخیر خروجی نوتیفیکیشن‌ها به مدت 3 ثانیه
+            }
+            });
+
+            window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            var sticky = navbar.offsetTop;
+            
+            if (window.pageYOffset >= sticky) {
+                navbar.classList.add('sticky');
+            } else {
+                navbar.classList.remove('sticky');
+            }
+            });
             // Wait for the DOM to load
             document.addEventListener('DOMContentLoaded', function() {
                 var modal = document.getElementById('modal');
@@ -622,12 +658,6 @@
                 modal.style.pointerEvents = 'auto';
             });
 
-            document.addEventListener('DOMContentLoaded', function () {
-                const popupMessage = document.getElementById('popup-message');
-                setTimeout(function () {
-                    popupMessage.style.display = 'none';
-                }, 10000);
-            });
         </script>
         <!-- Modernizer JS -->
         <script src="{% static 'js/vendor/modernizr.min.js' %}"></script>

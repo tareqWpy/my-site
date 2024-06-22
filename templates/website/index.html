@@ -1,7 +1,7 @@
 {% extends "base.html" %}{% load static %} {% block content %}
 {% load thumbnail %} {% load humanize %}
             <!-- Start Banner Area -->
-            <h1 class="d-none">Home Default Blog</h1>
+            <h1 class="d-none">Home</h1>
             <div class="slider-area bg-color-grey">
                 <div class="axil-slide slider-style-1">
                     <div class="container">
@@ -353,7 +353,7 @@
             </div>
             <!-- End Trending Post Area  -->
 
-                        <!-- Start Categories List  -->
+            <!-- Start Categories List  -->
             <div class="axil-categories-list axil-section-gap bg-color-grey">
                 <div class="container">
                     <div class="row align-items-center mb--30">
@@ -367,20 +367,42 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <!-- Start List Wrapper  -->
-                            <div class="list-categories d-flex flex-wrap">
+                            <div class="list-categories d-flex flex-wrap justify-content-center">
+
+                                                                <!-- Start Single Category  -->
+                                <div class="single-cat">
+                                    <div class="inner">
+                                        <a href="{% url 'blog:post-category' cat_name='backend' %}">
+                                                <a class="thumbnail">
+                                                    <img
+                                                        src="{% static 'images/post-images/django.jpg' %}"
+                                                        alt="Post Images"
+                                                    />
+                                                </a>
+                                            <div class="content">
+                                                <h5 class="title"><a href="{% url 'blog:post-category' cat_name='backend' %}">Backend</a>
+                                                    
+                                                </h5>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- End Single Category  -->
+
+
                                 <!-- Start Single Category  -->
                                 <div class="single-cat">
                                     <div class="inner">
-                                        <a href="#">
-                                            <div class="thumbnail">
-                                                <img
-                                                    src="{% static 'images/post-images/post-sm-01.jpg' %}"
-                                                    alt="post categories images"
-                                                />
-                                            </div>
+                                        <a href="{% url 'blog:post-category' cat_name='wordpress' %}">
+                                                <a class="thumbnail">
+                                                    <img
+                                                        src="{% static 'images/post-images/wordpress.jpg' %}"
+                                                        alt="Post Images"
+                                                    />
+                                                </a>
                                             <div class="content">
-                                                <h5 class="title">
-                                                    Sports &#38; Fitness
+                                                <h5 class="title"><a href="{% url 'blog:post-category' cat_name='wordpress' %}">WordPress</a>
+                                                    
                                                 </h5>
                                             </div>
                                         </a>
@@ -391,94 +413,23 @@
                                 <!-- Start Single Category  -->
                                 <div class="single-cat">
                                     <div class="inner">
-                                        <a href="#">
-                                            <div class="thumbnail">
-                                                <img
-                                                    src="{% static 'images/post-images/post-sm-02.jpg' %}"
-                                                    alt="post categories images"
-                                                />
-                                            </div>
+                                        <a href="{% url 'blog:post-category' cat_name='frontend' %}">
+                                                <a class="thumbnail">
+                                                    <img
+                                                        src="{% static 'images/post-images/vuejs.jpg' %}"
+                                                        alt="Post Images"
+                                                    />
+                                                </a>
                                             <div class="content">
-                                                <h5 class="title">Travel</h5>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <!-- End Single Category  -->
-
-                                <!-- Start Single Category  -->
-                                <div class="single-cat">
-                                    <div class="inner">
-                                        <a href="#">
-                                            <div class="thumbnail">
-                                                <img
-                                                    src="{% static 'images/post-images/post-sm-03.jpg' %}"
-                                                    alt="post categories images"
-                                                />
-                                            </div>
-                                            <div class="content">
-                                                <h5 class="title">lifestyle</h5>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <!-- End Single Category  -->
-
-                                <!-- Start Single Category  -->
-                                <div class="single-cat">
-                                    <div class="inner">
-                                        <a href="#">
-                                            <div class="thumbnail">
-                                                <img
-                                                    src="{% static 'images/post-images/post-sm-04.jpg' %}"
-                                                    alt="post categories images"
-                                                />
-                                            </div>
-                                            <div class="content">
-                                                <h5 class="title">Health</h5>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <!-- End Single Category  -->
-
-                                <!-- Start Single Category  -->
-                                <div class="single-cat">
-                                    <div class="inner">
-                                        <a href="#">
-                                            <div class="thumbnail">
-                                                <img
-                                                    src="{% static 'images/post-images/post-sm-05.jpg' %}"
-                                                    alt="post categories images"
-                                                />
-                                            </div>
-                                            <div class="content">
-                                                <h5 class="title">Animals</h5>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <!-- End Single Category  -->
-
-                                <!-- Start Single Category  -->
-                                <div class="single-cat">
-                                    <div class="inner">
-                                        <a href="#">
-                                            <div class="thumbnail">
-                                                <img
-                                                    src="{% static 'images/post-images/post-sm-06.jpg' %}"
-                                                    alt="post categories images"
-                                                />
-                                            </div>
-                                            <div class="content">
-                                                <h5 class="title">
-                                                    Food &#38; Drink
+                                                <h5 class="title"><a href="{% url 'blog:post-category' cat_name='frontend' %}">Frontend</a>
+                                                    
                                                 </h5>
                                             </div>
                                         </a>
                                     </div>
                                 </div>
                                 <!-- End Single Category  -->
+
                             </div>
                             <!-- Start List Wrapper  -->
                         </div>
