@@ -10,7 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
+
+# ! for the MAINTANANCE_MODE
+MAINTANANCE_MODE = int(os.environ.get("MAINTANANCE_MODE", 0))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,18 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-02*y+-u17cm&v(y+2@2jg%)(xld0p#szq#wnc2mnph(m#xoj&7"
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
 
 # Application definition
-
 INSTALLED_APPS = [
+    "whitenoise.runserver_nostatic",  # ! pip install whitenoise
     "multi_captcha_admin",  # ! pip install django-multi-captcha-admin
     "django.contrib.admin",
     "django.contrib.auth",
@@ -42,10 +39,12 @@ INSTALLED_APPS = [
     "django.contrib.humanize",
     "django.contrib.sites",
     "django.contrib.sitemaps",
+    "robots",  # ! pip install django-robots
     "captcha",  # ! pip install  django-simple-captcha
     "taggit",  # ! pip install django-taggit
     "django_summernote",  # ! pip install django-summernote
     "sorl.thumbnail",  # ! pip install sorl-thumbnail
+    "compressor",  # ! pip install django_compressor
     # ?  manualy installed apps:
     "accounts",
     "blog",
@@ -60,6 +59,10 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    # ? used apps for creating a better website:
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    # ! for the MAINTANANCE_MODE
+    "mysite.middleware.MaintenanceModeMiddleware",
 ]
 
 ROOT_URLCONF = "mysite.urls"
@@ -81,17 +84,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "mysite.wsgi.application"
-
-
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
 
 
 # Password validation
@@ -149,17 +141,10 @@ EMAIL_HOST_PASSWORD = "xywuynudbaxvqelh"
 
 PASSWORD_RESET_TIMEOUT = 3600
 
-SITE_ID = 2
-
-# ! this for python manage.py collecstatic
-STATIC_ROOT = BASE_DIR / "statics"
-MEDIA_ROOT = BASE_DIR / "media"
-
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
-
-CSRF_COOKIE_SECURE = True
+# ? multi-captcha-admin
+MULTI_CAPTCHA_ADMIN = {
+    "engine": "simple-captcha",
+}
 
 # ? robots
 ROBOTS_USE_HOST = False

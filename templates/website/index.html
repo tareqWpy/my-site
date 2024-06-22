@@ -13,7 +13,7 @@
                                     <div class="content-block">
                                         <!-- Start Post Thumbnail  -->
                                         <div class="post-thumbnail">
-                                            <a href="post-details.html">
+                                            <a href="{% url 'blog:post-single' pid=post.id %}">
                                                 <img
                                                     src="{{post.image.url}}"
                                                     alt="Post Images"

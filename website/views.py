@@ -69,3 +69,19 @@ def newsletter_view(request):
 
     # Handle GET request
     return redirect("/")
+
+
+def error_400(request, exception):
+    return render(request, "errors/handler400.html")
+
+
+def error_403(request, exception):
+    return render(request, "errors/handler403.html")
+
+
+def error_404(request, exception):
+    return render(request, "errors/handler404.html")
+
+
+def error_500(request):
+    return render(request, "errors/handler500.html")

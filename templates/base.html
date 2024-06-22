@@ -1,15 +1,19 @@
-{% load static %}
+{% load static %}{% load compress %}
 <!DOCTYPE html>
 <html class="no-js" lang="en">
     <head>
-        <meta charset="utf-8" />
-        <title>DjangoTech</title>
-        <meta name="robots" content="noindex, follow" />
-        <meta name="description" content="" />
         <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
+        <meta name="description" content="" />
+        <meta charset="UTF-8" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="blog for developers"/>
+        <meta property="og:description" content="a great website for developers"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content="https://djandotech.online"/>
+        <title>DjangoTech</title>
         <!-- Favicon -->
         <link
             rel="shortcut icon"
@@ -21,6 +25,7 @@
     ============================================ -->
 
         <!-- Bootstrap CSS -->
+        {% compress css %}
         <link
             rel="stylesheet"
             href="{% static 'css/vendor/bootstrap.min.css' %}"
@@ -107,6 +112,7 @@
             }
         }
         </style>
+        {% endcompress %}
     </head>
         
     <body style="margin-top:80px">
@@ -460,8 +466,8 @@
 
         <!-- JS
 ============================================ -->
+        {% compress js %}
         <script>
-
             document.addEventListener('DOMContentLoaded', function() {
             var notifications = document.querySelector('.notifications');
 
@@ -512,5 +518,6 @@
 
         <!-- Main JS -->
         <script src="{% static 'js/main.js' %}"></script>
+        {% endcompress %}
     </body>
 </html>

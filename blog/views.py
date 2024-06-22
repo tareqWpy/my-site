@@ -117,21 +117,5 @@ def post_single_view(request, pid):
         }
         counted_view(request, post)
         return render(request, "blog/post-single.html", context)
-    # else:
-    #     return redirect("accounts:login")
-
-
-# def error_400(request, exception):
-#     return render(request, "error/handler400.html")
-
-
-# def error_403(request, exception):
-#     return render(request, "error/handler403.html")
-
-
-# def error_404(request, exception):
-#     return render(request, "error/handler404.html")
-
-
-# def error_500(request):
-#     return render(request, "error/handler500.html")
+    else:
+        return redirect("accounts:login")
