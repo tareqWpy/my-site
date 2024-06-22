@@ -22,8 +22,6 @@ class PostAdmin(SummernoteModelAdmin):
     list_filter = ("status", "author")
     ordering = ["created_date"]
     search_fields = ("title",)
-    # در صفحه دستکاری و ادیت فیلدهای پست به ورودی های زیر دسترسی داریم
-    # fields = ("title",)
 
     # * for summernote fields
     summernote_fields = ("content",)

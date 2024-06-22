@@ -42,6 +42,7 @@ COMPRESS_ENABLED = True
 
 
 ALLOWED_HOSTS = [config("ALLOWED_HOSTS")]
+# ALLOWED_HOSTS = ["*"]
 
 
 # ? site framework
@@ -63,7 +64,7 @@ DATABASES = {
 
 
 # ! this for python manage.py collecstatic
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = BASE_DIR / "staticfiles/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 STATICFILES_DIRS = [
@@ -86,9 +87,9 @@ if config("USE_SSL_SETTING", cast=bool, default=False):
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
     # more security settings
+    X_FRAME_OPTIONS = "SAMEORIGIN"
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SECURE_BROWSER_XSS_FILTER = True
-    X_FRAME_OPTIONS = "SAMEORIGIN"
-    SECURE_REFERRER_POLICY = "strict-origin"
+    SECURE_REFERRER_POLICY = "strict"
     USE_X_FORWARDED_HOST = True
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
