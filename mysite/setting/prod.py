@@ -11,8 +11,8 @@ with open(BASE_DIR / "mysite/etc/secret_key.txt") as f:
 import os
 
 # ! for the MAINTANANCE_MODE
-MAINTANANCE_MODE = int(os.environ.get("MAINTANANCE_MODE", 1))
-
+MAINTANANCE_MODE = int(os.environ.get("MAINTANANCE_MODE", 0))
+DEBUG = True
 
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
@@ -33,8 +33,6 @@ COMPRESS_FILTERS = {
 }
 HTML_MINIFY = True
 KEEP_COMMENTS_ON_MINIFYING = True
-
-DEBUG = False
 
 COMPRESS_ENABLED = True
 
