@@ -10,7 +10,7 @@ from mysite.settings import *
 SECRET_KEY = config("SECRET_KEY")
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # ? site framework

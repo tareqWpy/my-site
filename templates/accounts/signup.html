@@ -86,8 +86,15 @@
                             </div>
                             <div class="col-12">
                                 <div
-                                    class="form-submit d-flex justify-content-between align-items-center"
+                                    class="form-submit d-flex w-full flex-column gap-4 justify-content-between align-items-center"
                                 >
+                                    <div
+                                        class="d-flex justify-content-start w-full"
+                                    >
+                                        <a href="{% url 'accounts:login' %}"
+                                            >already have an account?</a
+                                        >
+                                    </div>
                                     <button
                                         name="submit"
                                         type="submit"
@@ -95,9 +102,6 @@
                                     >
                                         Sign Up
                                     </button>
-                                    <a href="{% url 'accounts:login' %}"
-                                        >already have an account?</a
-                                    >
                                 </div>
                             </div>
                         </form>
